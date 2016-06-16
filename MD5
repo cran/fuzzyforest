@@ -1,4 +1,4 @@
-0c99fee61765cad8c53eb1fb61e8a1ce *DESCRIPTION
+56466611ba81ba8ae7be2c650ecf642b *DESCRIPTION
 8d0670a7efd36e6eb55207fb30010700 *NAMESPACE
 11697f92776d67e0236faee41603fda1 *R/fuzzy_forest_obj.R
 b44eec9c0e15bff2e916b884a2bf83e0 *R/fuzzyforest.R
@@ -10,7 +10,7 @@ cf6b40f180eb3388c345d9873d2e21b3 *R/select_RF.R
 3150303a0f63147eeaa55f3663111d97 *data/Liver_Expr.rda
 bad076eb5f639cf935841a87c704e61c *data/ctg.RData
 028844c085c39da3bd1ebc8002a1b573 *data/example_ff.RData
-9d2803c7c8cb68386a1e150183b9b89d *inst/CITATION
+8478de50a6516b46cb432de09de491ca *inst/CITATION
 7f04c7180b0b70e74e90497aff2a38a8 *man/Liver_Expr.Rd
 38c3afa55edc4c6c33791d3b7cce8804 *man/WGCNA_control.Rd
 912532366184ce72c153d9218b3841c2 *man/ctg.Rd

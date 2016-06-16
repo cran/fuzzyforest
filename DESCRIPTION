@@ -1,6 +1,6 @@
 Package: fuzzyforest
 Title: Fuzzy Forests
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c( person("Daniel", "Conn", role=c("aut", "cre"), email="djconn17@gmail.com"),
               person("Tuck", "Ngun", role="aut"),
               person(c("Christina M."), "Ramirez", role="aut"))
@@ -21,10 +21,10 @@ Imports: randomForest, foreach, doRNG, doParallel, parallel, ggplot2
 Suggests: WGCNA,
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2016-03-09 20:58:29 UTC; danielconn
+Packaged: 2016-06-15 20:39:05 UTC; danielconn
 Author: Daniel Conn [aut, cre],
   Tuck Ngun [aut],
   Christina M. Ramirez [aut]
 Maintainer: Daniel Conn <djconn17@gmail.com>
 Repository: CRAN
-Date/Publication: 2016-03-10 00:28:01
+Date/Publication: 2016-06-16 05:28:03
