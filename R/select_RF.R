@@ -52,7 +52,7 @@ select_RF <- function(X, y, drop_fraction, number_selected, mtry_factor,
      i <- 1
      while (num_features >= target){
        if(num_processors > 1) {
-         rf = foreach(ntree = rep(ntree/num_processors, num_processors),
+         rf <- foreach(ntree = rep(ntree/num_processors, num_processors),
                       .combine = combine, .packages = 'randomForest') %dorng% {
                         randomForest(current_X , y, ntree = ntree, mtry = mtry,
                                      importance = TRUE, scale = FALSE, nodesize=nodesize) }
@@ -62,18 +62,18 @@ select_RF <- function(X, y, drop_fraction, number_selected, mtry_factor,
                             importance = TRUE, scale = FALSE,
                             nodesize = nodesize)
        }
-       var_importance <- rf$importance
-       var_importance <- var_importance[order(var_importance[, 1],
-                                              decreasing=TRUE), ]
-       selection_list[[i]] <- data.frame(row.names(var_importance),
-                                         round(var_importance[, 1], 4),
+       var_importance <- importance(rf, type=1, scale=FALSE)[, 1]
+       var_importance <- var_importance[order(var_importance,
+                                              decreasing=TRUE)]
+       selection_list[[i]] <- data.frame(names(var_importance),
+                                         round(var_importance, 4),
                                          stringsAsFactors=FALSE)
        names(selection_list[[i]]) <- c("feature_name", "variable_importance")
        i <- i + 1
        reduction <- ceiling(num_features*drop_fraction)
        if(num_features - reduction > target) {
-         trimmed_varlist <- var_importance[1:(num_features - reduction), ]
-         features <- row.names(trimmed_varlist)
+         trimmed_varlist <- var_importance[1:(num_features - reduction)]
+         features <- names(trimmed_varlist)
          current_X <- current_X[, which(names(current_X) %in% features), drop=FALSE]
          num_features <- length(features)
          if(CLASSIFICATION==TRUE) {
@@ -86,8 +86,8 @@ select_RF <- function(X, y, drop_fraction, number_selected, mtry_factor,
        }
        else {
          num_features <- target - 1
-         mod_varlist <- var_importance[, 1][1:target]
-         features <- row.names(var_importance)[1:target]
+         mod_varlist <- var_importance[1:target]
+         features <- names(var_importance)[1:target]
          feature_list <- cbind(features, mod_varlist)
          selection_list[[i]] <- as.data.frame(cbind(features, round(mod_varlist, 4)),
                                               stringsAsFactors=FALSE)
@@ -106,6 +106,7 @@ select_RF <- function(X, y, drop_fraction, number_selected, mtry_factor,
 #' For now this is an internal function that I've used to explore how
 #' recursive feature elimination works in simulations.  It may be exported at
 #' a later time.
+#' @export
 #' @param X                 A data.frame.
 #'                          Each column corresponds to a feature vectors.
 #' @param y                 Response vector.
@@ -149,7 +150,7 @@ iterative_RF <- function(X, y, drop_fraction, keep_fraction, mtry_factor,
   target <- ceiling(num_features * keep_fraction)
   current_X <- X
   while (num_features >= target){
-    rf = foreach(ntree = rep(ntree/num_processors, num_processors),
+    rf <- foreach(ntree = rep(ntree/num_processors, num_processors),
                  .combine = combine, .packages = 'randomForest') %dorng% {
                  randomForest(X , y, ntree = ntree, mtry = mtry,
                  importance = TRUE, scale = FALSE, nodesize=nodesize) }
