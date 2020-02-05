@@ -1,9 +1,17 @@
 Package: fuzzyforest
 Title: Fuzzy Forests
-Version: 1.0.6
-Authors@R: c( person("Daniel", "Conn", role=c("aut", "cre"), email="djconn17@gmail.com"),
-              person("Tuck", "Ngun", role="aut"),
-              person(c("Christina M."), "Ramirez", role="aut"))
+Version: 1.0.7
+Authors@R: 
+    c(person(given = "Daniel",
+             family = "Conn",
+             role = c("aut", "cre"),
+             email = "djconn17@gmail.com"),
+      person(given = "Tuck",
+             family = "Ngun",
+             role = "aut"),
+      person(given = "Christina M.",
+             family = "Ramirez",
+             role = "aut"))
 Description: Fuzzy forests, a new algorithm based on random forests,
     is designed to reduce the bias seen in random forest feature selection
     caused by the presence of correlated features.  Fuzzy forests uses
@@ -19,15 +27,14 @@ Description: Fuzzy forests, a new algorithm based on random forests,
 Depends: R (>= 3.2.1)
 License: GPL-3
 LazyData: true
-Imports: randomForest, foreach, doRNG, doParallel, parallel, ggplot2,
-        mvtnorm
+Imports: randomForest, foreach, doParallel, parallel, ggplot2, mvtnorm
 Suggests: WGCNA, testthat
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-10-26 19:18:31 UTC; danielconn
+Packaged: 2020-02-05 14:16:07 UTC; danielconn
 Author: Daniel Conn [aut, cre],
   Tuck Ngun [aut],
   Christina M. Ramirez [aut]
 Maintainer: Daniel Conn <djconn17@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-10-26 22:40:03 UTC
+Date/Publication: 2020-02-05 15:40:03 UTC

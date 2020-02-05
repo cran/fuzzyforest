@@ -53,7 +53,7 @@ select_RF <- function(X, y, drop_fraction, number_selected, mtry_factor,
      while (num_features >= target){
        if(num_processors > 1) {
          rf <- foreach(ntree = rep(ntree/num_processors, num_processors),
-                      .combine = combine, .packages = 'randomForest') %dorng% {
+                      .combine = combine, .packages = 'randomForest') %dopar% {
                         randomForest(current_X , y, ntree = ntree, mtry = mtry,
                                      importance = TRUE, scale = FALSE, nodesize=nodesize) }
        }
@@ -151,7 +151,7 @@ iterative_RF <- function(X, y, drop_fraction, keep_fraction, mtry_factor,
   current_X <- X
   while (num_features >= target){
     rf <- foreach(ntree = rep(ntree/num_processors, num_processors),
-                 .combine = combine, .packages = 'randomForest') %dorng% {
+                 .combine = combine, .packages = 'randomForest') %dopar% {
                  randomForest(X , y, ntree = ntree, mtry = mtry,
                  importance = TRUE, scale = FALSE, nodesize=nodesize) }
     var_importance <- importance(rf, type=1)

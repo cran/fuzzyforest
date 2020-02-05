@@ -18,7 +18,6 @@
 #' @importFrom mvtnorm      rmvnorm
 #' @import foreach
 #' @import doParallel
-#' @import doRNG
 #' @import ggplot2
 #' @name fuzzyforest
 #' @note This work was partially funded by NSF IIS 1251151 and AMFAR 8721SC.

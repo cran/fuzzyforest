@@ -206,7 +206,7 @@ ff.default <- function(X, y, Z=NULL, module_membership,
     while (num_features >= target){
       if(num_processors > 1) {
         rf <- foreach(ntree = rep(ntree/num_processors, num_processors),
-                      .combine = combine, .packages = 'randomForest') %dorng% {
+                      .combine = combine, .packages = 'randomForest') %dopar% {
                         randomForest(module, y, ntree = ntree, mtry = mtry,
                                      importance = TRUE, scale = FALSE, nodesize=nodesize) }
       }
@@ -240,13 +240,6 @@ ff.default <- function(X, y, Z=NULL, module_membership,
         row.names(survivors[[i]]) <- NULL
         survivors[[i]] <- as.data.frame(survivors[[i]])
         survivors[[i]][, 1] <- as.character(survivors[[i]][, 1])
-        fake_out <- tryCatch({
-          survivors[[i]][, 2]
-        },
-          error = function(e){
-            browser()
-          }
-        )
         survivors[[i]][, 2] <- as.numeric(as.character(survivors[[i]][, 2]))
       }
     }
