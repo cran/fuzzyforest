@@ -96,6 +96,7 @@ select_params <- select_control(drop_fraction = drop_fraction,
                                 ntree_factor = ntree_factor,
                                 mtry_factor = mtry_factor)
 \donttest{
+library(WGCNA)
 wff_fit <- wff(X, y, WGCNA_params = WGCNA_params,
                 screen_params = screen_params,
                 select_params = select_params,

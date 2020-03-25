@@ -124,7 +124,6 @@
 #' }
 #' @note This work was partially funded by NSF IIS 1251151 and AMFAR 8721SC.
 #> NULL
-
 #' @export
 #' @rdname ff
 ff.default <- function(X, y, Z=NULL, module_membership,

@@ -79,6 +79,7 @@
 #'                                 ntree_factor = ntree_factor,
 #'                                 mtry_factor = mtry_factor)
 #' \donttest{
+#' library(WGCNA)
 #' wff_fit <- wff(X, y, WGCNA_params = WGCNA_params,
 #'                 screen_params = screen_params,
 #'                 select_params = select_params,
@@ -97,7 +98,6 @@
 #' @note
 #' This work was partially funded by NSF IIS 1251151 and AMFAR 8721SC.
 #> NULL
-
 #' @export
 #' @rdname wff
 wff.default <- function(X, y, Z=NULL, WGCNA_params=WGCNA_control(power=6),
@@ -186,6 +186,7 @@ wff <- function(X, ...) {
 #'                                 ntree_factor = ntree_factor,
 #'                                 mtry_factor = mtry_factor)
 #' \donttest{
+#' library(WGCNA)
 #' wff_fit <- wff(y ~ ., data=dat,
 #'                WGCNA_params = WGCNA_params,
 #'                screen_params = screen_params,
@@ -210,35 +211,6 @@ wff <- function(X, ...) {
 #'          \code{\link[fuzzyforest]{print.fuzzy_forest}},
 #'          \code{\link[fuzzyforest]{predict.fuzzy_forest}},
 #'          \code{\link[fuzzyforest]{modplot}}
-#' @examples
-#' data(ctg)
-#' y <- ctg$NSP
-#' X <- ctg[, 2:22]
-#' dat <- as.data.frame(cbind(y, X))
-#' WGCNA_params <- WGCNA_control(p = 6, minModuleSize = 1, nThreads = 1)
-#' mtry_factor <- 1; min_ntree <- 500;  drop_fraction <- .5; ntree_factor <- 1
-#' screen_params <- screen_control(drop_fraction = drop_fraction,
-#'                                 keep_fraction = .25, min_ntree = min_ntree,
-#'                                 ntree_factor = ntree_factor,
-#'                                 mtry_factor = mtry_factor)
-#' select_params <- select_control(drop_fraction = drop_fraction,
-#'                                 number_selected = 5,
-#'                                 min_ntree = min_ntree,
-#'                                 ntree_factor = ntree_factor,
-#'                                 mtry_factor = mtry_factor)
-#' \donttest{
-#' wff_fit <- wff(y ~ ., data=dat,
-#'                WGCNA_params = WGCNA_params,
-#'                screen_params = screen_params,
-#'                select_params = select_params,
-#'                final_ntree = 500)
-#'
-#' #extract variable importance rankings
-#' vims <- wff_fit$feature_list
-#'
-#' #plot results
-#' modplot(wff_fit)
-#' }
 wff.formula <- function(formula, data=NULL, ...){
   #code is stolen from randomForest by way of e1071
   if (!inherits(formula, "formula"))
